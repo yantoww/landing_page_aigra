@@ -65,7 +65,7 @@ onMounted(() => {
     },
     { threshold: 0.1 }
   )
-  document.querySelectorAll('#fitur .fade-in-up').forEach((el) => observer.observe(el))
+  document.querySelectorAll('#fitur .feature-card-entrance').forEach((el) => observer.observe(el))
 })
 </script>
 
@@ -93,41 +93,39 @@ onMounted(() => {
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" style="perspective: 1000px;">
         <div
           v-for="(feature, index) in features"
           :key="feature.id"
-          class="fade-in-up card-hover bg-white dark:bg-[#1a2e22] border border-[#2D8659]
-                 rounded-2xl p-6 flex flex-col gap-4 cursor-default group
-                 transition-colors duration-300"
+          class="feature-card-entrance feature-card bg-white dark:bg-[#1a2e22]
+                 rounded-2xl p-6 flex flex-col gap-4 cursor-default group"
           :class="`delay-${(index + 1) * 100}`"
         >
           <div
             :class="[
               'w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300',
-              feature.iconBg,
-              'group-hover:scale-110'
+              feature.iconBg
             ]"
           >
-            <svg v-if="feature.id === 1" :class="['w-6 h-6', feature.iconColor]"
+            <svg v-if="feature.id === 1" :class="['feature-icon-1 w-6 h-6', feature.iconColor]"
                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.14 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/>
             </svg>
 
-            <svg v-else-if="feature.id === 2" :class="['w-6 h-6', feature.iconColor]"
+            <svg v-else-if="feature.id === 2" :class="['feature-icon-2 w-6 h-6', feature.iconColor]"
                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
             </svg>
 
-            <svg v-else-if="feature.id === 3" :class="['w-6 h-6', feature.iconColor]"
+            <svg v-else-if="feature.id === 3" :class="['feature-icon-3 w-6 h-6', feature.iconColor]"
                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/>
             </svg>
 
-            <svg v-else :class="['w-6 h-6', feature.iconColor]"
+            <svg v-else :class="['feature-icon-4 w-6 h-6', feature.iconColor]"
                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h16a2 2 0 012 2v10a2 2 0 01-2 2h-2"/>
@@ -146,9 +144,11 @@ onMounted(() => {
             </p>
           </div>
 
-          <div
-            :class="['h-1 rounded-full mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300', feature.accentColor]"
-          />
+          <div class="relative h-1 mt-auto overflow-hidden rounded-full">
+            <div
+              :class="['absolute inset-y-0 left-0 w-0 group-hover:w-full transition-all duration-500 ease-out', feature.accentColor]"
+            />
+          </div>
         </div>
       </div>
     </div>
