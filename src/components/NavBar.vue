@@ -16,7 +16,7 @@ const activeLink = ref(null)
 const navLinks = [
   { label: 'Beranda',  href: '#hero'    },
   { label: 'Fitur',   href: '#fitur'   },
-  { label: 'Tentang', href: '#tentang' },
+  { label: 'Tentang Kami', href: '#tentang' },
   { label: 'Kontak',  href: '#kontak'  },
 ]
 
@@ -51,7 +51,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <!-- Transparan di awal, solid setelah scroll melewati 20px -->
+ 
   <nav
     :class="[
       'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
@@ -191,18 +191,18 @@ onUnmounted(() => {
             @click="handleLinkClick(link.href)"
           >
             <span class="relative z-10 flex items-center gap-3">
-              <!-- Dot indikator -->
+            
               <span
                 class="nav-dot w-1.5 h-1.5 rounded-full bg-[#2D8659] flex-shrink-0"
                 :class="activeLink === link.href ? 'bg-white' : ''"
               />
               <span class="nav-label">{{ link.label }}</span>
-              <!-- Arrow icon -->
+              
               <svg class="nav-arrow w-4 h-4 ml-auto opacity-0 -translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
               </svg>
             </span>
-            <!-- Ripple overlay saat klik -->
+        
             <span
               v-if="activeLink === link.href"
               class="absolute inset-0 rounded-lg bg-[#2D8659]/30 animate-ping-once"

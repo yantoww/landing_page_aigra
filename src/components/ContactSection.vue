@@ -142,10 +142,8 @@ onMounted(() => {
         </p>
       </div>
 
-      <!-- Split Layout: form kiri, info kontak kanan -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
 
-        <!-- LEFT: Contact Form -->
         <div class="fade-in-up bg-white dark:bg-[#1a2e22] border border-gray-100 dark:border-white/10
                     rounded-2xl p-8 shadow-sm transition-colors duration-300">
           <form @submit.prevent="handleSubmit" novalidate class="flex flex-col gap-6">
@@ -277,7 +275,6 @@ onMounted(() => {
           </form>
         </div>
 
-        <!-- RIGHT: Contact Info Panel -->
         <div class="fade-in-up delay-200">
           <!-- Panel sudah gelap (#0B3D2E), minimal perubahan di dark mode -->
           <div class="bg-[#0B3D2E] dark:bg-[#1a2e22] rounded-2xl p-8 text-white h-full
@@ -329,7 +326,6 @@ onMounted(() => {
               </div>
             </div>
 
-            <!-- Decorative element -->
             <div
               class="mt-10 pt-8 border-t border-white/10 flex items-center gap-3"
             >
@@ -341,7 +337,6 @@ onMounted(() => {
       </div>
     </div>
 
-    <!-- Success Toast Notification -->
     <Transition name="toast">
       <div
         v-if="showToast"

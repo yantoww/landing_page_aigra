@@ -102,7 +102,6 @@ onMounted(() => {
                  transition-colors duration-300"
           :class="`delay-${(index + 1) * 100}`"
         >
-          <!-- Icon circle with colored background -->
           <div
             :class="[
               'w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300',
@@ -110,28 +109,24 @@ onMounted(() => {
               'group-hover:scale-110'
             ]"
           >
-            <!-- Monitoring icon (signal/radio waves) -->
             <svg v-if="feature.id === 1" :class="['w-6 h-6', feature.iconColor]"
                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.14 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/>
             </svg>
 
-            <!-- Weather/Sun icon -->
             <svg v-else-if="feature.id === 2" :class="['w-6 h-6', feature.iconColor]"
                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
             </svg>
 
-            <!-- Dashboard icon -->
             <svg v-else-if="feature.id === 3" :class="['w-6 h-6', feature.iconColor]"
                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/>
             </svg>
 
-            <!-- AI/Robot icon -->
             <svg v-else :class="['w-6 h-6', feature.iconColor]"
                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -151,7 +146,6 @@ onMounted(() => {
             </p>
           </div>
 
-          <!-- Colored accent bar at bottom — visible only on hover -->
           <div
             :class="['h-1 rounded-full mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300', feature.accentColor]"
           />

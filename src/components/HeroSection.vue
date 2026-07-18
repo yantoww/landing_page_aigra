@@ -76,18 +76,15 @@ onMounted(() => {
   -->
   <div class="relative">
 
-    <!-- ===== HERO SECTION ===== -->
     <section
       id="hero"
       class="relative min-h-screen flex flex-col justify-center overflow-hidden"
     >
-      <!-- Background image ladang pertanian -->
       <div
         class="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style="background-image: url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1920&q=85&auto=format&fit=crop')"
       />
 
-      <!-- Gradient overlay hijau tua transparan -->
       <div
         class="absolute inset-0"
         style="background: linear-gradient(135deg, rgba(11,61,46,0.90) 0%, rgba(11,61,46,0.70) 50%, rgba(45,134,89,0.55) 100%)"
@@ -95,7 +92,6 @@ onMounted(() => {
 
       <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-36 lg:pb-44">
         <div class="max-w-3xl">
-
 
           <h1
             class="text-4xl sm:text-5xl lg:text-6xl font-extrabold
@@ -166,21 +162,18 @@ onMounted(() => {
                      transition-colors duration-300"
               :style="{ backgroundColor: stat.bgColor }"
             >
-              <!-- Users icon (kolom 1) -->
               <svg v-if="stat.icon === 'users'" class="w-5 h-5"
                    :style="{ color: stat.color }"
                    fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round"
                       d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
               </svg>
-              <!-- Leaf icon (kolom 2) -->
               <svg v-else-if="stat.icon === 'area'" class="w-5 h-5"
                    :style="{ color: stat.color }"
                    fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round"
                       d="M12 3C7 3 4 8 4 13c0 4 3 7 8 8 5-1 8-4 8-8 0-5-3-10-8-10z M12 21V12 M12 12 C9 9 6 7 4 13"/>
               </svg>
-              <!-- Trending up icon (kolom 3) -->
               <svg v-else class="w-5 h-5"
                    :style="{ color: stat.color === '#0B3D2E' ? '#3da06a' : stat.color }"
                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -189,7 +182,6 @@ onMounted(() => {
               </svg>
             </div>
 
-            <!-- Nilai statistik besar — count-up animation -->
             <span
               class="text-2xl sm:text-3xl font-extrabold leading-tight transition-colors duration-300"
               :style="{ color: stat.icon === 'accuracy' ? undefined : stat.color }"

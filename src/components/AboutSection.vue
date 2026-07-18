@@ -66,7 +66,6 @@ onMounted(() => {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-        <!-- LEFT: Text Content -->
         <div class="fade-in-up">
           <span
             class="inline-block bg-[#2D8659]/15 text-[#2D8659] text-xs font-bold
@@ -97,7 +96,6 @@ onMounted(() => {
               :key="i"
               class="flex items-center gap-3"
             >
-              <!-- Centang hijau -->
               <div
                 class="w-6 h-6 rounded-full bg-[#2D8659] flex items-center justify-center
                        flex-shrink-0 shadow-sm shadow-[#2D8659]/30"
@@ -123,7 +121,6 @@ onMounted(() => {
           </a>
         </div>
 
-        <!-- RIGHT: Stat Cards -->
         <div class="flex flex-col gap-4 fade-in-up delay-200">
           <div
             v-for="(stat, i) in statCards"
@@ -142,7 +139,6 @@ onMounted(() => {
                 <div class="text-gray-400 dark:text-gray-500 text-sm mt-1
                             transition-colors duration-300">{{ stat.sublabel }}</div>
               </div>
-              <!-- Decorative dot pattern -->
               <div class="opacity-10 dark:opacity-20">
                 <div class="grid grid-cols-4 gap-1">
                   <div

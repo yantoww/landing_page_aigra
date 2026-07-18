@@ -9,8 +9,8 @@
  *   duration     {Number}  — durasi animasi dalam ms (default 1800)
  *
  * Behavior:
- *   - REPLAY setiap kali elemen keluar lalu masuk kembali ke viewport
- *   - Reset ke 0 saat keluar viewport, count-up ulang saat masuk kembali
+ *   - Animasi mulai saat elemen masuk viewport (Intersection Observer)
+ *   - Hanya berjalan sekali (observer di-disconnect setelah trigger pertama)
  *   - Easing ease-out: 1 - (1 - t)^3
  *   - Menggunakan requestAnimationFrame — tanpa library eksternal
  */
