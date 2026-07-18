@@ -1,6 +1,9 @@
-# 🌿 AgriSmart
+# AgriSmart
 
-## 🚀 Instalasi & Menjalankan
+ **Live Demo:** https://landing-page-aigra.vercel.app
+ **Repository:** https://github.com/yantoww/landing_page_aigra
+
+## Instalasi & Menjalankan
 
 ### Prasyarat
 - **Node.js** v18 atau lebih baru
