@@ -7,13 +7,15 @@
  * - Fade-in animation via IntersectionObserver
  */
 import { onMounted } from 'vue'
+import CountUpStat from './CountUpStat.vue'
 
-// Data statistik untuk card melayang
-// Gunakan hex string untuk warna agar tidak bergantung pada Tailwind class scanner
 const stats = [
   {
     icon: 'users',
     value: '500+',
+    numericValue: 500,
+    suffix: '+',
+    useThousands: false,
     label: 'Petani Aktif',
     color: '#2D8659',
     bgColor: '#EEF3EC',
@@ -22,6 +24,9 @@ const stats = [
   {
     icon: 'area',
     value: '10.000+',
+    numericValue: 10000,
+    suffix: '+',
+    useThousands: true,
     label: 'Hektar Terkelola',
     color: '#D9A441',
     bgColor: '#FEF9EE',
@@ -30,6 +35,9 @@ const stats = [
   {
     icon: 'accuracy',
     value: '98%',
+    numericValue: 98,
+    suffix: '%',
+    useThousands: false,
     label: 'Akurasi Prediksi',
     color: '#0B3D2E',
     bgColor: '#EEF3EC',
@@ -37,14 +45,17 @@ const stats = [
   },
 ]
 
-// Activate fade-in elements on mount
+// Gunakan hex string untuk warna agar tidak bergantung pada Tailwind class scanner
+// (class dinamis dari JS tidak akan di-purge oleh Tailwind JIT)
+
 onMounted(() => {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible')
-          observer.unobserve(entry.target)
+        } else {
+          entry.target.classList.remove('visible')
         }
       })
     },
@@ -79,11 +90,9 @@ onMounted(() => {
         style="background: linear-gradient(135deg, rgba(11,61,46,0.90) 0%, rgba(11,61,46,0.70) 50%, rgba(45,134,89,0.55) 100%)"
       />
 
-      <!-- Hero Content -->
       <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-36 lg:pb-44">
         <div class="max-w-3xl">
 
-          <!-- Badge -->
           <div class="inline-flex items-center gap-2 mb-6">
             <span
               class="bg-[#D9A441]/20 border border-[#D9A441]/50 text-[#D9A441]
@@ -95,7 +104,6 @@ onMounted(() => {
             </span>
           </div>
 
-          <!-- Judul Utama -->
           <h1
             class="text-4xl sm:text-5xl lg:text-6xl font-extrabold
                    text-white leading-tight mb-6"
@@ -105,7 +113,6 @@ onMounted(() => {
             yang Berkelanjutan
           </h1>
 
-          <!-- Deskripsi -->
           <p
             class="text-white/80 text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl"
           >
@@ -113,7 +120,6 @@ onMounted(() => {
             AgriSmart menggabungkan teknologi presisi dengan kearifan pertanian tradisional.
           </p>
 
-          <!-- CTA Buttons -->
           <div class="flex flex-col sm:flex-row gap-4">
             <a
               href="#kontak"
@@ -161,7 +167,6 @@ onMounted(() => {
             class="flex flex-col items-center text-center gap-3 py-2"
             :class="i === 1 ? 'border-x border-gray-100 px-4' : 'px-2'"
           >
-            <!-- Icon circle dengan background warna via inline style -->
             <div
               class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
               :style="{ backgroundColor: stat.bgColor }"
@@ -189,15 +194,19 @@ onMounted(() => {
               </svg>
             </div>
 
-            <!-- Nilai statistik besar — inline style warna agar pasti muncul -->
+            <!-- Nilai statistik besar — count-up animation -->
             <span
               class="text-2xl sm:text-3xl font-extrabold leading-tight"
               :style="{ color: stat.color }"
             >
-              {{ stat.value }}
+              <CountUpStat
+                :value="stat.numericValue"
+                :suffix="stat.suffix"
+                :use-thousands="stat.useThousands"
+                :duration="1800"
+              />
             </span>
 
-            <!-- Label kecil -->
             <span class="text-xs sm:text-sm font-medium leading-tight" :style="{ color: stat.color }">
               {{ stat.label }}
             </span>

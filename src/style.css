@@ -95,3 +95,99 @@ body {
   background: var(--color-leaf);
   border-radius: 3px;
 }
+
+/* ==========================================
+   Mobile Nav Menu Animations
+   ========================================== */
+
+/* Staggered slide-in untuk item mobile menu */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.mobile-nav-item {
+  animation: slideInLeft 0.25s ease both;
+}
+
+/* Ripple/ping sekali saat klik */
+@keyframes pingOnce {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  80%  { transform: scale(1.4); opacity: 0; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+.animate-ping-once {
+  animation: pingOnce 0.35s ease-out forwards;
+}
+
+/* ==========================================
+   Mobile Nav Item — Hover Effects
+   ========================================== */
+
+.mobile-nav-item-hover {
+  position: relative;
+}
+
+/* Highlight bar kiri saat hover */
+.mobile-nav-item-hover::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 3px;
+  background: #2D8659;
+  border-radius: 0 3px 3px 0;
+  transform: scaleY(0);
+  transition: transform 0.2s ease;
+}
+
+.mobile-nav-item-hover:hover::before {
+  transform: scaleY(1);
+}
+
+/* Background glow saat hover */
+.mobile-nav-item-hover:hover {
+  background: rgba(45, 134, 89, 0.12);
+  color: #D9A441;
+  transform: translateX(4px);
+}
+
+/* Dot membesar saat hover */
+.mobile-nav-item-hover:hover .nav-dot {
+  background: #D9A441;
+  transform: scale(1.6);
+  transition: all 0.2s ease;
+}
+
+.mobile-nav-item-hover .nav-dot {
+  transition: all 0.2s ease;
+}
+
+/* Label sedikit lebih terang */
+.mobile-nav-item-hover:hover .nav-label {
+  color: #D9A441;
+  transition: color 0.2s ease;
+}
+
+.mobile-nav-item-hover .nav-label {
+  transition: color 0.2s ease;
+}
+
+/* Arrow slide in saat hover */
+.mobile-nav-item-hover .nav-arrow {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.mobile-nav-item-hover:hover .nav-arrow {
+  opacity: 0.7;
+  transform: translateX(0);
+  color: #D9A441;
+}

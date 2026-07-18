@@ -8,7 +8,6 @@
  */
 import { onMounted } from 'vue'
 
-// Data fitur — digunakan dengan v-for di template
 const features = [
   {
     id: 1,
@@ -25,30 +24,30 @@ const features = [
     title: 'Prediksi Cuaca & Panen',
     description:
       'Antisipasi perubahan cuaca ekstrim dengan analisis prediktif berbasis machine learning.',
-    iconBg: 'bg-amber-50',
-    iconColor: 'text-[#D9A441]',
-    borderColor: 'border-[#D9A441]',
-    accentColor: 'bg-[#D9A441]',
+    iconBg: 'bg-emerald-50',
+    iconColor: 'text-[#2D8659]',
+    borderColor: 'border-[#2D8659]',
+    accentColor: 'bg-[#2D8659]',
   },
   {
     id: 3,
     title: 'Dashboard Investor',
     description:
       'Laporan performa lahan komprehensif yang disajikan dalam metrik finansial yang jelas.',
-    iconBg: 'bg-blue-50',
-    iconColor: 'text-blue-600',
-    borderColor: 'border-blue-400',
-    accentColor: 'bg-blue-500',
+    iconBg: 'bg-emerald-50',
+    iconColor: 'text-[#2D8659]',
+    borderColor: 'border-[#2D8659]',
+    accentColor: 'bg-[#2D8659]',
   },
   {
     id: 4,
     title: 'Rekomendasi Otomatis',
     description:
       'Sistem AI memberikan saran intervensi irigasi dan pupuk yang presisi berdasarkan data lapangan.',
-    iconBg: 'bg-purple-50',
-    iconColor: 'text-purple-600',
-    borderColor: 'border-purple-400',
-    accentColor: 'bg-purple-500',
+    iconBg: 'bg-emerald-50',
+    iconColor: 'text-[#2D8659]',
+    borderColor: 'border-[#2D8659]',
+    accentColor: 'bg-[#2D8659]',
   },
 ]
 
@@ -59,7 +58,8 @@ onMounted(() => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible')
-          observer.unobserve(entry.target)
+        } else {
+          entry.target.classList.remove('visible')
         }
       })
     },
@@ -70,18 +70,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- Features Section -->
   <section id="fitur" class="bg-white pt-12 pb-20 lg:pt-16 lg:pb-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <!-- Section Header -->
       <div class="text-center mb-16 fade-in-up">
-        <!-- Badge -->
         <span
           class="inline-block bg-[#EEF3EC] text-[#2D8659] text-xs font-bold
                  uppercase tracking-widest px-4 py-1.5 rounded-full mb-4"
         >
-  
+        fitur
         </span>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0B3D2E] mb-4">
           Fitur Unggulan
@@ -92,12 +89,11 @@ onMounted(() => {
         </p>
       </div>
 
-      <!-- Features Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div
           v-for="(feature, index) in features"
           :key="feature.id"
-          class="fade-in-up card-hover bg-white border border-gray-100 rounded-2xl
+          class="fade-in-up card-hover bg-white border border-[#2D8659] rounded-2xl
                  p-6 flex flex-col gap-4 cursor-default group"
           :class="`delay-${(index + 1) * 100}`"
         >
@@ -138,7 +134,6 @@ onMounted(() => {
             </svg>
           </div>
 
-          <!-- Text Content -->
           <div>
             <h3 class="text-base font-bold text-[#0B3D2E] mb-2 group-hover:text-[#2D8659]
                        transition-colors duration-200">
@@ -149,7 +144,7 @@ onMounted(() => {
             </p>
           </div>
 
-          <!-- Colored accent bar at bottom -->
+          <!-- Colored accent bar at bottom — visible only on hover -->
           <div
             :class="['h-1 rounded-full mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300', feature.accentColor]"
           />

@@ -8,14 +8,12 @@
  */
 import { onMounted } from 'vue'
 
-// Checklist items kiri
 const checklistItems = [
   'Teknologi Ramah Lingkungan',
   'Dukungan Komunitas Petani',
   'Peningkatan Hasil Panen Berkelanjutan',
 ]
 
-// Stat cards kanan dengan border warna berbeda
 const statCards = [
   {
     value: '50K+',
@@ -50,7 +48,8 @@ onMounted(() => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible')
-          observer.unobserve(entry.target)
+        } else {
+          entry.target.classList.remove('visible')
         }
       })
     },
@@ -61,14 +60,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- About Section -->
   <section id="tentang" class="bg-[#EEF3EC] py-20 lg:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
         <!-- LEFT: Text Content -->
         <div class="fade-in-up">
-          <!-- Badge -->
           <span
             class="inline-block bg-[#2D8659]/15 text-[#2D8659] text-xs font-bold
                    uppercase tracking-widest px-4 py-1.5 rounded-full mb-5"
@@ -76,7 +73,6 @@ onMounted(() => {
             Tentang Kami
           </span>
 
-          <!-- Judul -->
           <h2
             class="text-3xl sm:text-4xl font-extrabold text-[#0B3D2E] leading-tight mb-6"
           >
@@ -84,7 +80,6 @@ onMounted(() => {
             <span class="text-[#2D8659]">Setiap Petak Tanah</span>
           </h2>
 
-          <!-- Deskripsi -->
           <p class="text-gray-600 leading-relaxed mb-8">
             Kami berkomitmen untuk mendorong pertanian Indonesia maju melalui teknologi
             inovatif, memberikan akses yang sama kepada seluruh petani dari Sabang sampai
@@ -92,7 +87,6 @@ onMounted(() => {
             dan berkelanjutan.
           </p>
 
-          <!-- Checklist Items -->
           <ul class="flex flex-col gap-4">
             <li
               v-for="(item, i) in checklistItems"
@@ -113,7 +107,6 @@ onMounted(() => {
             </li>
           </ul>
 
-          <!-- CTA -->
           <a
             href="#kontak"
             class="btn-primary inline-flex items-center gap-2 mt-10 px-7 py-3.5 rounded-xl font-semibold"

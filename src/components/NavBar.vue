@@ -7,13 +7,10 @@
  */
 import { ref, onMounted, onUnmounted } from 'vue'
 
-// State untuk hamburger menu
 const isMenuOpen = ref(false)
-
-// State untuk scroll position (navbar background change)
 const isScrolled = ref(false)
+const activeLink = ref(null)
 
-// Daftar menu navigasi
 const navLinks = [
   { label: 'Beranda',  href: '#hero'    },
   { label: 'Fitur',   href: '#fitur'   },
@@ -21,17 +18,23 @@ const navLinks = [
   { label: 'Kontak',  href: '#kontak'  },
 ]
 
-// Toggle hamburger menu
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
 }
 
-// Tutup menu setelah klik link
+// Delay penutupan menu agar animasi klik sempat terlihat
+const handleLinkClick = (href) => {
+  activeLink.value = href
+  setTimeout(() => {
+    isMenuOpen.value = false
+    activeLink.value = null
+  }, 300)
+}
+
 const closeMenu = () => {
   isMenuOpen.value = false
 }
 
-// Handle scroll event untuk ubah navbar style
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 20
 }
@@ -46,7 +49,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <!-- Sticky navbar: transparan di awal, solid setelah scroll -->
+  <!-- Transparan di awal, solid setelah scroll melewati 20px -->
   <nav
     :class="[
       'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
@@ -56,13 +59,13 @@ onUnmounted(() => {
     ]"
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 lg:h-18">
+      <div class="flex items-center justify-between h-16 lg:h-20">
 
         <!-- Logo -->
         <a href="#hero" class="flex items-center gap-2 group" @click="closeMenu">
-          <!-- Ikon daun SVG -->
           <div class="w-8 h-8 bg-[#2D8659] rounded-lg flex items-center justify-center
                       group-hover:bg-[#D9A441] transition-colors duration-200">
+            <!-- Ikon daun SVG -->
             <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
               <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2-8 2 .8-2 4-3.7 5-4S9 3 7 7c0 0 1.18-.73 3.3-1.02C8.43 7.34 6 10.51 6 15a5 5 0 0 0 5 5c.45 0 .89-.05 1.31-.13C12.93 19.07 14 17.43 14 16c0-2.76-2.24-5-5-5"/>
             </svg>
@@ -99,7 +102,7 @@ onUnmounted(() => {
           aria-label="Toggle menu"
           :aria-expanded="isMenuOpen"
         >
-          <!-- Ikon hamburger / close animated -->
+          <!-- 3 garis beranimasi → tanda × saat menu terbuka -->
           <div class="w-5 h-4 flex flex-col justify-between">
             <span
               :class="['block h-0.5 bg-white transition-all duration-300 origin-center',
@@ -133,19 +136,46 @@ onUnmounted(() => {
       >
         <div class="px-4 py-4 flex flex-col gap-2">
           <a
-            v-for="link in navLinks"
+            v-for="(link, index) in navLinks"
             :key="link.href"
             :href="link.href"
-            class="text-white/90 hover:text-[#D9A441] hover:bg-white/5 font-medium
-                   py-3 px-3 rounded-lg transition-all duration-200"
-            @click="closeMenu"
+            :style="{ animationDelay: `${index * 60}ms` }"
+            :class="[
+              'mobile-nav-item mobile-nav-item-hover relative overflow-hidden font-medium py-3 px-4 rounded-lg',
+              'transition-all duration-200',
+              activeLink === link.href
+                ? 'bg-[#2D8659] text-white scale-[0.96]'
+                : 'text-white/90'
+            ]"
+            @click="handleLinkClick(link.href)"
           >
-            {{ link.label }}
+            <span class="relative z-10 flex items-center gap-3">
+              <!-- Dot indikator -->
+              <span
+                class="nav-dot w-1.5 h-1.5 rounded-full bg-[#2D8659] flex-shrink-0"
+                :class="activeLink === link.href ? 'bg-white' : ''"
+              />
+              <span class="nav-label">{{ link.label }}</span>
+              <!-- Arrow icon -->
+              <svg class="nav-arrow w-4 h-4 ml-auto opacity-0 -translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </span>
+            <!-- Ripple overlay saat klik -->
+            <span
+              v-if="activeLink === link.href"
+              class="absolute inset-0 rounded-lg bg-[#2D8659]/30 animate-ping-once"
+            />
           </a>
           <a
             href="#kontak"
-            class="btn-primary py-3 px-4 rounded-lg text-sm font-semibold text-center mt-2"
-            @click="closeMenu"
+            :class="[
+              'py-3 px-4 rounded-lg text-sm font-semibold text-center mt-2 transition-all duration-200',
+              activeLink === '#kontak'
+                ? 'btn-primary scale-[0.96] opacity-80'
+                : 'btn-primary'
+            ]"
+            @click="handleLinkClick('#kontak')"
           >
             Mulai Sekarang
           </a>

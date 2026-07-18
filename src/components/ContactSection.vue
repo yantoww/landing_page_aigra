@@ -10,28 +10,23 @@
  */
 import { ref, reactive, computed, onMounted } from 'vue'
 
-// Form data dengan v-model binding
 const form = reactive({
   name: '',
   email: '',
   message: '',
 })
 
-// Error messages
 const errors = reactive({
   name: '',
   email: '',
   message: '',
 })
 
-// State untuk toast notifikasi
 const showToast = ref(false)
 const isSubmitting = ref(false)
 
-// Validasi email helper
 const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 
-// Validasi per field
 const validateField = (field) => {
   if (field === 'name') {
     errors.name = form.name.trim() ? '' : 'Nama lengkap wajib diisi.'
@@ -50,7 +45,7 @@ const validateField = (field) => {
   }
 }
 
-// Computed: cek apakah form valid (semua terisi dan tidak ada error)
+// Semua field harus terisi dan tidak ada error aktif
 const isFormValid = computed(() => {
   return (
     form.name.trim() !== '' &&
@@ -62,7 +57,6 @@ const isFormValid = computed(() => {
 
 // Submit handler
 const handleSubmit = async () => {
-  // Validasi semua field
   validateField('name')
   validateField('email')
   validateField('message')
@@ -73,7 +67,6 @@ const handleSubmit = async () => {
   // Simulasi request (mock delay)
   await new Promise((resolve) => setTimeout(resolve, 1000))
 
-  // Reset form
   form.name = ''
   form.email = ''
   form.message = ''
@@ -84,7 +77,6 @@ const handleSubmit = async () => {
   setTimeout(() => { showToast.value = false }, 4000)
 }
 
-// Info kontak panel kanan
 const contactInfo = [
   {
     icon: 'email',
@@ -115,7 +107,8 @@ onMounted(() => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible')
-          observer.unobserve(entry.target)
+        } else {
+          entry.target.classList.remove('visible')
         }
       })
     },
@@ -126,11 +119,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- Contact Section -->
   <section id="kontak" class="bg-white py-20 lg:py-28 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <!-- Section Header -->
       <div class="text-center mb-14 fade-in-up">
         <span
           class="inline-block bg-[#EEF3EC] text-[#2D8659] text-xs font-bold
@@ -147,14 +138,13 @@ onMounted(() => {
         </p>
       </div>
 
-      <!-- Split Layout -->
+      <!-- Split Layout: form kiri, info kontak kanan -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
 
         <!-- LEFT: Contact Form -->
         <div class="fade-in-up bg-white border border-gray-100 rounded-2xl p-8 shadow-sm">
           <form @submit.prevent="handleSubmit" novalidate class="flex flex-col gap-6">
 
-            <!-- Nama Lengkap -->
             <div>
               <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">
                 Nama Lengkap
@@ -186,7 +176,6 @@ onMounted(() => {
               </Transition>
             </div>
 
-            <!-- Email -->
             <div>
               <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
                 Email
@@ -218,7 +207,6 @@ onMounted(() => {
               </Transition>
             </div>
 
-            <!-- Pesan -->
             <div>
               <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">
                 Pesan
@@ -249,7 +237,6 @@ onMounted(() => {
               </Transition>
             </div>
 
-            <!-- Submit Button -->
             <button
               type="submit"
               :disabled="isSubmitting"
@@ -290,22 +277,18 @@ onMounted(() => {
                 :key="i"
                 class="flex items-start gap-4"
               >
-                <!-- Icon circle -->
                 <div class="w-10 h-10 rounded-xl bg-[#2D8659]/30 flex items-center
                             justify-center flex-shrink-0 mt-0.5">
-                  <!-- Email -->
                   <svg v-if="info.icon === 'email'" class="w-5 h-5 text-[#D9A441]"
                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                   </svg>
-                  <!-- Phone -->
                   <svg v-else-if="info.icon === 'phone'" class="w-5 h-5 text-[#D9A441]"
                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                   </svg>
-                  <!-- Location -->
                   <svg v-else-if="info.icon === 'location'" class="w-5 h-5 text-[#D9A441]"
                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -313,7 +296,6 @@ onMounted(() => {
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                   </svg>
-                  <!-- Clock -->
                   <svg v-else class="w-5 h-5 text-[#D9A441]"
                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
