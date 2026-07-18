@@ -19,6 +19,7 @@ const stats = [
     label: 'Petani Aktif',
     color: '#2D8659',
     bgColor: '#EEF3EC',
+    bgColorDark: '#1a3d28',
     labelColor: '#6b7280',
   },
   {
@@ -30,6 +31,7 @@ const stats = [
     label: 'Hektar Terkelola',
     color: '#D9A441',
     bgColor: '#FEF9EE',
+    bgColorDark: '#3d2e0f',
     labelColor: '#6b7280',
   },
   {
@@ -41,6 +43,7 @@ const stats = [
     label: 'Akurasi Prediksi',
     color: '#0B3D2E',
     bgColor: '#EEF3EC',
+    bgColorDark: '#1a3d28',
     labelColor: '#6b7280',
   },
 ]
@@ -93,16 +96,6 @@ onMounted(() => {
       <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-36 lg:pb-44">
         <div class="max-w-3xl">
 
-          <div class="inline-flex items-center gap-2 mb-6">
-            <span
-              class="bg-[#D9A441]/20 border border-[#D9A441]/50 text-[#D9A441]
-                     text-xs font-semibold px-4 py-1.5 rounded-full backdrop-blur-sm
-                     flex items-center gap-2"
-            >
-              <span class="w-1.5 h-1.5 bg-[#D9A441] rounded-full animate-pulse" />
-              Platform Pertanian Berbasis AI
-            </span>
-          </div>
 
           <h1
             class="text-4xl sm:text-5xl lg:text-6xl font-extrabold
@@ -158,17 +151,19 @@ onMounted(() => {
     <div class="relative z-20 -mt-20 px-4 sm:px-6 lg:px-8 mb-0">
       <div class="max-w-4xl mx-auto">
         <div
-          class="bg-white rounded-2xl p-6 sm:p-8 grid grid-cols-3"
+          class="bg-white dark:bg-[#1a2e22] rounded-2xl p-6 sm:p-8 grid grid-cols-3
+                 transition-colors duration-300"
           style="box-shadow: 0 8px 48px rgba(11,61,46,0.18), 0 2px 8px rgba(0,0,0,0.06);"
         >
           <div
             v-for="(stat, i) in stats"
             :key="i"
             class="flex flex-col items-center text-center gap-3 py-2"
-            :class="i === 1 ? 'border-x border-gray-100 px-4' : 'px-2'"
+            :class="i === 1 ? 'border-x border-gray-100 dark:border-white/10 px-4' : 'px-2'"
           >
             <div
-              class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+              class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0
+                     transition-colors duration-300"
               :style="{ backgroundColor: stat.bgColor }"
             >
               <!-- Users icon (kolom 1) -->
@@ -187,7 +182,7 @@ onMounted(() => {
               </svg>
               <!-- Trending up icon (kolom 3) -->
               <svg v-else class="w-5 h-5"
-                   :style="{ color: stat.color }"
+                   :style="{ color: stat.color === '#0B3D2E' ? '#3da06a' : stat.color }"
                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
@@ -196,8 +191,9 @@ onMounted(() => {
 
             <!-- Nilai statistik besar — count-up animation -->
             <span
-              class="text-2xl sm:text-3xl font-extrabold leading-tight"
-              :style="{ color: stat.color }"
+              class="text-2xl sm:text-3xl font-extrabold leading-tight transition-colors duration-300"
+              :style="{ color: stat.icon === 'accuracy' ? undefined : stat.color }"
+              :class="stat.icon === 'accuracy' ? 'text-[#0B3D2E] dark:text-[#3da06a]' : ''"
             >
               <CountUpStat
                 :value="stat.numericValue"
@@ -207,7 +203,11 @@ onMounted(() => {
               />
             </span>
 
-            <span class="text-xs sm:text-sm font-medium leading-tight" :style="{ color: stat.color }">
+            <span
+              class="text-xs sm:text-sm font-medium leading-tight transition-colors duration-300"
+              :style="{ color: stat.icon === 'accuracy' ? undefined : stat.color }"
+              :class="stat.icon === 'accuracy' ? 'text-[#0B3D2E] dark:text-[#3da06a]' : ''"
+            >
               {{ stat.label }}
             </span>
           </div>

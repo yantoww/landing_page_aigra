@@ -9,6 +9,7 @@
 import { onMounted } from 'vue'
 
 const checklistItems = [
+  'Platform Pertanian Berbasis AI',
   'Teknologi Ramah Lingkungan',
   'Dukungan Komunitas Petani',
   'Peningkatan Hasil Panen Berkelanjutan',
@@ -36,7 +37,7 @@ const statCards = [
     label: 'Peningkatan Efisiensi',
     sublabel: 'Rata-rata efisiensi biaya produksi',
     borderColor: 'border-l-[#0B3D2E]',
-    valueColor: 'text-[#0B3D2E]',
+    valueColor: 'text-[#0B3D2E] dark:text-[#3da06a]',
     bg: 'bg-white',
   },
 ]
@@ -60,7 +61,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <section id="tentang" class="bg-[#EEF3EC] py-20 lg:py-28">
+  <section id="tentang" class="bg-[#EEF3EC] dark:bg-[#111f18] py-20 lg:py-28
+                                transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
@@ -74,13 +76,15 @@ onMounted(() => {
           </span>
 
           <h2
-            class="text-3xl sm:text-4xl font-extrabold text-[#0B3D2E] leading-tight mb-6"
+            class="text-3xl sm:text-4xl font-extrabold text-[#0B3D2E] dark:text-[#f0f4f2]
+                   leading-tight mb-6 transition-colors duration-300"
           >
             Membawa Transformasi Digital ke
             <span class="text-[#2D8659]">Setiap Petak Tanah</span>
           </h2>
 
-          <p class="text-gray-600 leading-relaxed mb-8">
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-8
+                    transition-colors duration-300">
             Kami berkomitmen untuk mendorong pertanian Indonesia maju melalui teknologi
             inovatif, memberikan akses yang sama kepada seluruh petani dari Sabang sampai
             Merauke untuk memanfaatkan kecerdasan buatan demi hasil panen yang optimal
@@ -103,7 +107,8 @@ onMounted(() => {
                         d="M5 13l4 4L19 7"/>
                 </svg>
               </div>
-              <span class="text-gray-700 font-medium">{{ item }}</span>
+              <span class="text-gray-700 dark:text-gray-200 font-medium
+                           transition-colors duration-300">{{ item }}</span>
             </li>
           </ul>
 
@@ -123,24 +128,27 @@ onMounted(() => {
           <div
             v-for="(stat, i) in statCards"
             :key="i"
-            class="card-hover bg-white rounded-xl shadow-sm border-l-4 p-6"
+            class="card-hover bg-white dark:bg-[#1a2e22] rounded-xl shadow-sm border-l-4 p-6
+                   transition-colors duration-300"
             :class="stat.borderColor"
           >
             <div class="flex items-center justify-between">
               <div>
-                <div :class="['text-3xl font-extrabold mb-1', stat.valueColor]">
+                <div :class="['text-3xl font-extrabold mb-1 transition-colors duration-300', stat.valueColor]">
                   {{ stat.value }}
                 </div>
-                <div class="text-[#0B3D2E] font-semibold text-base">{{ stat.label }}</div>
-                <div class="text-gray-400 text-sm mt-1">{{ stat.sublabel }}</div>
+                <div class="text-[#0B3D2E] dark:text-[#f0f4f2] font-semibold text-base
+                            transition-colors duration-300">{{ stat.label }}</div>
+                <div class="text-gray-400 dark:text-gray-500 text-sm mt-1
+                            transition-colors duration-300">{{ stat.sublabel }}</div>
               </div>
               <!-- Decorative dot pattern -->
-              <div class="opacity-10">
+              <div class="opacity-10 dark:opacity-20">
                 <div class="grid grid-cols-4 gap-1">
                   <div
                     v-for="n in 16"
                     :key="n"
-                    class="w-1.5 h-1.5 rounded-full bg-gray-800"
+                    class="w-1.5 h-1.5 rounded-full bg-gray-800 dark:bg-white"
                   />
                 </div>
               </div>

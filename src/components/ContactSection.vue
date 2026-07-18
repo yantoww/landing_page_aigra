@@ -119,20 +119,24 @@ onMounted(() => {
 </script>
 
 <template>
-  <section id="kontak" class="bg-white py-20 lg:py-28 relative">
+  <section id="kontak" class="bg-white dark:bg-[#0d1f17] py-20 lg:py-28 relative
+                               transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <div class="text-center mb-14 fade-in-up">
         <span
-          class="inline-block bg-[#EEF3EC] text-[#2D8659] text-xs font-bold
-                 uppercase tracking-widest px-4 py-1.5 rounded-full mb-4"
+          class="inline-block bg-[#EEF3EC] dark:bg-[#1a2e22] text-[#2D8659] text-xs font-bold
+                 uppercase tracking-widest px-4 py-1.5 rounded-full mb-4
+                 transition-colors duration-300"
         >
           Hubungi Kami
         </span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0B3D2E] mb-4">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0B3D2E] dark:text-[#f0f4f2] mb-4
+                   transition-colors duration-300">
           Siap Memulai Transformasi?
         </h2>
-        <p class="text-gray-500 max-w-xl mx-auto">
+        <p class="text-gray-500 dark:text-gray-400 max-w-xl mx-auto
+                  transition-colors duration-300">
           Tim kami siap membantu Anda setiap hari kerja. Isi form di bawah dan kami
           akan merespons dalam 24 jam.
         </p>
@@ -142,11 +146,13 @@ onMounted(() => {
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
 
         <!-- LEFT: Contact Form -->
-        <div class="fade-in-up bg-white border border-gray-100 rounded-2xl p-8 shadow-sm">
+        <div class="fade-in-up bg-white dark:bg-[#1a2e22] border border-gray-100 dark:border-white/10
+                    rounded-2xl p-8 shadow-sm transition-colors duration-300">
           <form @submit.prevent="handleSubmit" novalidate class="flex flex-col gap-6">
 
             <div>
-              <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">
+              <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2
+                                        transition-colors duration-300">
                 Nama Lengkap
               </label>
               <input
@@ -156,11 +162,13 @@ onMounted(() => {
                 placeholder="Masukkan nama Anda"
                 autocomplete="name"
                 :class="[
-                  'w-full px-4 py-3 rounded-xl border text-gray-800 placeholder-gray-400',
+                  'w-full px-4 py-3 rounded-xl border text-gray-800 dark:text-[#f0f4f2]',
+                  'placeholder-gray-400 dark:placeholder-gray-500',
+                  'bg-white dark:bg-[#0d1f17]',
                   'focus:outline-none focus:ring-2 transition-all duration-200',
                   errors.name
                     ? 'border-red-400 focus:ring-red-200'
-                    : 'border-gray-200 focus:ring-[#2D8659]/30 focus:border-[#2D8659]'
+                    : 'border-gray-200 dark:border-white/20 focus:ring-[#2D8659]/30 focus:border-[#2D8659]'
                 ]"
                 @blur="validateField('name')"
               />
@@ -177,7 +185,8 @@ onMounted(() => {
             </div>
 
             <div>
-              <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
+              <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2
+                                         transition-colors duration-300">
                 Email
               </label>
               <input
@@ -187,11 +196,13 @@ onMounted(() => {
                 placeholder="nama@email.com"
                 autocomplete="email"
                 :class="[
-                  'w-full px-4 py-3 rounded-xl border text-gray-800 placeholder-gray-400',
+                  'w-full px-4 py-3 rounded-xl border text-gray-800 dark:text-[#f0f4f2]',
+                  'placeholder-gray-400 dark:placeholder-gray-500',
+                  'bg-white dark:bg-[#0d1f17]',
                   'focus:outline-none focus:ring-2 transition-all duration-200',
                   errors.email
                     ? 'border-red-400 focus:ring-red-200'
-                    : 'border-gray-200 focus:ring-[#2D8659]/30 focus:border-[#2D8659]'
+                    : 'border-gray-200 dark:border-white/20 focus:ring-[#2D8659]/30 focus:border-[#2D8659]'
                 ]"
                 @blur="validateField('email')"
               />
@@ -208,7 +219,8 @@ onMounted(() => {
             </div>
 
             <div>
-              <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">
+              <label for="message" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2
+                                           transition-colors duration-300">
                 Pesan
               </label>
               <textarea
@@ -217,11 +229,13 @@ onMounted(() => {
                 rows="5"
                 placeholder="Tuliskan pesan atau pertanyaan Anda..."
                 :class="[
-                  'w-full px-4 py-3 rounded-xl border text-gray-800 placeholder-gray-400',
+                  'w-full px-4 py-3 rounded-xl border text-gray-800 dark:text-[#f0f4f2]',
+                  'placeholder-gray-400 dark:placeholder-gray-500',
+                  'bg-white dark:bg-[#0d1f17]',
                   'focus:outline-none focus:ring-2 transition-all duration-200 resize-none',
                   errors.message
                     ? 'border-red-400 focus:ring-red-200'
-                    : 'border-gray-200 focus:ring-[#2D8659]/30 focus:border-[#2D8659]'
+                    : 'border-gray-200 dark:border-white/20 focus:ring-[#2D8659]/30 focus:border-[#2D8659]'
                 ]"
                 @blur="validateField('message')"
               />
@@ -265,7 +279,9 @@ onMounted(() => {
 
         <!-- RIGHT: Contact Info Panel -->
         <div class="fade-in-up delay-200">
-          <div class="bg-[#0B3D2E] rounded-2xl p-8 text-white h-full">
+          <!-- Panel sudah gelap (#0B3D2E), minimal perubahan di dark mode -->
+          <div class="bg-[#0B3D2E] dark:bg-[#1a2e22] rounded-2xl p-8 text-white h-full
+                      border border-transparent dark:border-white/10 transition-colors duration-300">
             <h3 class="text-xl font-bold mb-2">Informasi Kontak</h3>
             <p class="text-white/60 text-sm mb-8">
               Tim kami siap membantu Anda setiap hari kerja.

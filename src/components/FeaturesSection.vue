@@ -14,7 +14,7 @@ const features = [
     title: 'Monitoring Lahan Real-time',
     description:
       'Pantau kondisi tanah dan tanaman secara real-time melalui sensor IoT yang terintegrasi.',
-    iconBg: 'bg-emerald-50',
+    iconBg: 'bg-emerald-50 dark:bg-[#1a3d28]',
     iconColor: 'text-[#2D8659]',
     borderColor: 'border-[#2D8659]',
     accentColor: 'bg-[#2D8659]',
@@ -24,7 +24,7 @@ const features = [
     title: 'Prediksi Cuaca & Panen',
     description:
       'Antisipasi perubahan cuaca ekstrim dengan analisis prediktif berbasis machine learning.',
-    iconBg: 'bg-emerald-50',
+    iconBg: 'bg-emerald-50 dark:bg-[#1a3d28]',
     iconColor: 'text-[#2D8659]',
     borderColor: 'border-[#2D8659]',
     accentColor: 'bg-[#2D8659]',
@@ -34,7 +34,7 @@ const features = [
     title: 'Dashboard Investor',
     description:
       'Laporan performa lahan komprehensif yang disajikan dalam metrik finansial yang jelas.',
-    iconBg: 'bg-emerald-50',
+    iconBg: 'bg-emerald-50 dark:bg-[#1a3d28]',
     iconColor: 'text-[#2D8659]',
     borderColor: 'border-[#2D8659]',
     accentColor: 'bg-[#2D8659]',
@@ -44,7 +44,7 @@ const features = [
     title: 'Rekomendasi Otomatis',
     description:
       'Sistem AI memberikan saran intervensi irigasi dan pupuk yang presisi berdasarkan data lapangan.',
-    iconBg: 'bg-emerald-50',
+    iconBg: 'bg-emerald-50 dark:bg-[#1a3d28]',
     iconColor: 'text-[#2D8659]',
     borderColor: 'border-[#2D8659]',
     accentColor: 'bg-[#2D8659]',
@@ -70,20 +70,24 @@ onMounted(() => {
 </script>
 
 <template>
-  <section id="fitur" class="bg-white pt-12 pb-20 lg:pt-16 lg:pb-24">
+  <section id="fitur" class="bg-white dark:bg-[#0d1f17] pt-12 pb-20 lg:pt-16 lg:pb-24
+                              transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <div class="text-center mb-16 fade-in-up">
         <span
-          class="inline-block bg-[#EEF3EC] text-[#2D8659] text-xs font-bold
-                 uppercase tracking-widest px-4 py-1.5 rounded-full mb-4"
+          class="inline-block bg-[#EEF3EC] dark:bg-[#1a2e22] text-[#2D8659] text-xs font-bold
+                 uppercase tracking-widest px-4 py-1.5 rounded-full mb-4
+                 transition-colors duration-300"
         >
-        fitur
+          fitur
         </span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0B3D2E] mb-4">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0B3D2E] dark:text-[#f0f4f2] mb-4
+                   transition-colors duration-300">
           Fitur Unggulan
         </h2>
-        <p class="text-gray-500 text-lg max-w-2xl mx-auto leading-relaxed">
+        <p class="text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed
+                  transition-colors duration-300">
           Teknologi mutakhir yang dirancang khusus untuk memenuhi kebutuhan proses
           pertanian modern.
         </p>
@@ -93,16 +97,17 @@ onMounted(() => {
         <div
           v-for="(feature, index) in features"
           :key="feature.id"
-          class="fade-in-up card-hover bg-white border border-[#2D8659] rounded-2xl
-                 p-6 flex flex-col gap-4 cursor-default group"
+          class="fade-in-up card-hover bg-white dark:bg-[#1a2e22] border border-[#2D8659]
+                 rounded-2xl p-6 flex flex-col gap-4 cursor-default group
+                 transition-colors duration-300"
           :class="`delay-${(index + 1) * 100}`"
         >
           <!-- Icon circle with colored background -->
           <div
             :class="[
-              'w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0',
+              'w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300',
               feature.iconBg,
-              'group-hover:scale-110 transition-transform duration-300'
+              'group-hover:scale-110'
             ]"
           >
             <!-- Monitoring icon (signal/radio waves) -->
@@ -135,11 +140,13 @@ onMounted(() => {
           </div>
 
           <div>
-            <h3 class="text-base font-bold text-[#0B3D2E] mb-2 group-hover:text-[#2D8659]
+            <h3 class="text-base font-bold text-[#0B3D2E] dark:text-[#f0f4f2] mb-2
+                       group-hover:text-[#2D8659] dark:group-hover:text-[#3da06a]
                        transition-colors duration-200">
               {{ feature.title }}
             </h3>
-            <p class="text-gray-500 text-sm leading-relaxed">
+            <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed
+                      transition-colors duration-300">
               {{ feature.description }}
             </p>
           </div>
